@@ -2,12 +2,12 @@
 {% load static %}
 
 {% block content %}
-<body>
-    
+<div class="my-5">
     <input id="input_data" type="text">
     <input value="제출" type="button" onclick="send_input()">
     <h1 id="text">hello world</h1>
-</body>
+    <p id="new_model_created_at"></p>
+</div>
 
 <script src="{% static 'js/hello_world.js' %}">
 

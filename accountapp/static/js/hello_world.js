@@ -6,7 +6,8 @@ function send_input() {
   .then(function (response) {
     console.log(response);
 
-    document.getElementById('text').innerHTML = response.data['message'];
+    document.getElementById('text').innerHTML = response.data['text'];
+    document.getElementById('new_model_created_at').innerHTML = response.data['created_at'];
 
   })
   .catch(function (error) {
@@ -23,7 +24,7 @@ axios.get('/accounts/hello_world/')
     console.log(response);
 
     // 성공했을 경우 어떤 javascript 작업을 할지
-    document.getElementById('text').innerHTML = response.data['message'];
+    document.getElementById('text').innerHTML = response.data['new_model'];
 
   })
   .catch(function (error) {
