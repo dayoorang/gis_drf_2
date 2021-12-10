@@ -35,3 +35,6 @@ def hello_world(request):
     serializer = NewModelSerializer(new_model_list, many=True)
 
     return Response(serializer.data)
+
+def AccountCreateTemplate(request):
+    return render(request, 'accountapp/create.html')
