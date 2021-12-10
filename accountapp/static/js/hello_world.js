@@ -24,7 +24,12 @@ axios.get('/accounts/hello_world/')
     console.log(response);
 
     // 성공했을 경우 어떤 javascript 작업을 할지
-    document.getElementById('text').innerHTML = response.data['new_model'];
+   for (let i=0; i < response.data.length; i++) {
+        document.getElementById('new_model_list').innerHTML +="<h5>" + response.data[i]['text'] + "</h5>"
+        document.getElementById('new_model_list').innerHTML +="<p>" + response.data[i]['created_at'] + "</p>"
+
+   }
+
 
   })
   .catch(function (error) {
