@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
 {% include 'head.html' %}
 <body class="text-center">
@@ -12,5 +14,7 @@
 <hr>
 {% include 'footer.html' %}
 
+
+<script src="{% static 'js/token_check.js' %}"></script>
 </body>
 </html>
