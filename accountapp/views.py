@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 from rest_framework import authentication, permissions
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
 
 
@@ -66,9 +66,18 @@ class AccountRetrieveAPIView(RetrieveAPIView):
     authentication_classes = [TokenAuthentication]
 
 
+class AccountUpdateTemplateView(TemplateView):
+    template_name = 'accountapp/update.html'
+
 class AccountUpdateAPIView(UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserWithoutPasswordSerializer
+
+    permission_classes = []
+    authentication_classes = [TokenAuthentication]
+
+class AccountDestroyAPIView(DestroyAPIView):
+    queryset = User.objects.all()
 
     permission_classes = []
     authentication_classes = [TokenAuthentication]

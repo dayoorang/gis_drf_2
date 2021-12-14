@@ -7,7 +7,7 @@ function initialize (pk) {
     console.log(response);
 
     document.getElementById('username').innerHTML = response.data['username'];
-    document.getElementById('date_joined').innerHTML = response.data['date_joined'];
+    document.getElementById('email').innerHTML = response.data['date_joined'];
 
   })
   .catch(function (error) {

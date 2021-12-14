@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <div>
+
+    <div id="alert_box"></div>
+
+    <div class="my-5">
+      <h2>Update Account</h2>
+    </div>
+
+    <div>
+      <form>
+        <input id="username" type="text">
+        <input id="email" type="email">
+
+        <input type="submit" onclick="update_account('{{ view.kwargs.pk }}');"
+               class="btn btn-dark rounded-pill px-5">
+      </form>
+    </div>
+  </div>
+
+<script src="{% static 'js/update.js' %}"></script>
+<script>
+  initialize("{{ view.kwargs.pk }}");
+</script>
+
+
+{% endblock %}
