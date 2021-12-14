@@ -1,8 +1,8 @@
 from django.urls import path
 from django.views.generic import TemplateView
 
-from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView,  \
-    AccountLoginView
+from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView, \
+    AccountLoginView, AccountRetrieveAPIView, AccountRetrieveTemplateView
 from rest_framework.authtoken import views
 
 app_name = 'accountapp'
@@ -24,5 +24,11 @@ urlpatterns = [
     path('create_template/',AccountCreateTemplate,name='create_template'),
     # 가입 로직
     path('create/',AccountCreateAPIView.as_view(), name='create'),
+
+    # UI 디테일
+    path('retrieve_template/<int:pk>',AccountRetrieveTemplateView.as_view(), name='retrieve_template'),
+
+    # UI 로직
+    path('retrieve/<int:pk>',AccountRetrieveAPIView.as_view(), name='retrieve'),
 
 ]

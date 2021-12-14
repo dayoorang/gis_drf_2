@@ -3,9 +3,11 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.views.generic import TemplateView
 from rest_framework import authentication, permissions
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
 
@@ -13,7 +15,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from accountapp.models import NewModel
-from accountapp.serializers import NewModelSerializer, UserSerializer
+from accountapp.serializers import NewModelSerializer, UserSerializer, UserWithoutPasswordSerializer
 
 
 def hello_world_template(request):
@@ -52,3 +54,13 @@ class AccountCreateAPIView(CreateAPIView):
 def AccountLoginView(request):
     return render(request, 'accountapp/login.html')
 
+
+class AccountRetrieveTemplateView(TemplateView):
+    template_name = 'accountapp/retrieve.html'
+
+
+class AccountRetrieveAPIView(RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserWithoutPasswordSerializer
+    permission_classes = [permissions.AllowAny]
+    authentication_classes = [TokenAuthentication]
