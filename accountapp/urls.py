@@ -2,8 +2,8 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView, \
-    AccountLoginView, AccountRetrieveAPIView, AccountRetrieveTemplateView, AccountUpdateAPIView, \
-    AccountUpdateTemplateView, AccountDestroyAPIView
+    AccountLoginView,  AccountRetrieveTemplateView,  \
+    AccountUpdateTemplateView,  AccountDestroyTemplateView, AccountRUDAPIView
 from rest_framework.authtoken import views
 
 app_name = 'accountapp'
@@ -24,16 +24,12 @@ urlpatterns = [
     # UI 가입
     path('create_template/',AccountCreateTemplate,name='create_template'),
     # 가입 로직
-    path('create/',AccountCreateAPIView.as_view(), name='create'),
+    path('',AccountCreateAPIView.as_view(), name='create'),
 
     # UI 디테일
     path('retrieve_template/<int:pk>',AccountRetrieveTemplateView.as_view(), name='retrieve_template'),
-
-    # UI 로직
-    path('retrieve/<int:pk>',AccountRetrieveAPIView.as_view(), name='retrieve'),
-
     path('update_template/<int:pk>', AccountUpdateTemplateView.as_view(), name='update_template'),
-    path('update/<int:pk>', AccountUpdateAPIView.as_view(), name='update'),
+    path('delete_template/<int:pk>', AccountDestroyTemplateView.as_view(), name='delete_template'),
 
-    path('delete/<int:pk>', AccountDestroyAPIView.as_view(), name='delete'),
+    path('<int:pk>', AccountRUDAPIView.as_view(), name='RUD'),
 ]

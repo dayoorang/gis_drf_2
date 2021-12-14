@@ -7,7 +7,13 @@ function setCookie(name, value, options = {}) {
   };
 
   if (options.expires instanceof Date) {
-    options.expires = opt
+    options.expires = options.expires.toUTCString();
+  }
+
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
     let optionValue = options[optionKey];
     if (optionValue !== true) {
       updatedCookie += "=" + optionValue;
@@ -26,13 +32,10 @@ function send_input() {
             // 성공했을 경우
             console.log(response);
 
-            document.getElementById('alert_box').innerHTML
-                = "<div class='btn btn-primary rounded-pill px-5'>로그인이 성공했습니다</div>";
-
             // Token 수령 후 쿠키 생성
+            setCookie('drf_token', 'Token ' + response.data['token']);
 
-            setCookie('drf_token','Token '+ response.data['token'])
-
+            // success_url 재연결
             window.location.href = '/accounts/hello_world_template/';
 
         })
