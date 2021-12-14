@@ -2,7 +2,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView, \
-    AccountLoginView, AccountRetrieveAPIView, AccountRetrieveTemplateView
+    AccountLoginView, AccountRetrieveAPIView, AccountRetrieveTemplateView, AccountUpdateAPIView
 from rest_framework.authtoken import views
 
 app_name = 'accountapp'
@@ -31,4 +31,5 @@ urlpatterns = [
     # UI 로직
     path('retrieve/<int:pk>',AccountRetrieveAPIView.as_view(), name='retrieve'),
 
+    path('update/<int:pk>', AccountUpdateAPIView.as_view(), name='update'),
 ]
