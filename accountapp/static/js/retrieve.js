@@ -1,13 +1,13 @@
 
 function initialize (pk) {
 
-   axios.get('/accounts/retrieve/' + pk)
+   axios.get('/accounts/' + pk)
   .then(function (response) {
     // handle success
     console.log(response);
 
     document.getElementById('username').innerHTML = response.data['username'];
-    document.getElementById('email').innerHTML = response.data['date_joined'];
+    document.getElementById('date_joined').innerHTML = response.data['date_joined'];
 
   })
   .catch(function (error) {
