@@ -1,12 +1,28 @@
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 function initialize(pk) {
+    axios({
+        method: 'get',
+        url: 'profiles/' + pk,
+        headers: {
+            Authorization: decodeURIComponent(getCookie('drf_token'))
+        }
+    })
+
     axios.get('/profiles/' + pk )
         .then(function (response) {
             // handle success
             console.log(response);
 
             document.getElementById('nickname').value = response.data['nickname'];
-            document.getElementById('message').value =message response.data['message'];
+            document.getElementById('message').value = response.data['message'];
 
+            // 이미지도 가져와야 함
 
         })
         .catch(function (error) {
@@ -29,18 +45,19 @@ function update_profile(pk) {
         url: '/profiles/' + pk,
         data: form,
         headers: {
-            Authorization: decodeURIComponent(getCookie('drf_token'))
+            Authorization: decodeURIComponent(getCookie('drf_token')),
         }
     })
         .then(function (response) {
             // handle success
-//            console.log(response);
+            console.log(response);
 
-            window.location.href = '/accounts/retrieve_template/' + response.data['owner']['id'];
+            window.location.href = '/accounts/retrieve_template/' + response.data['owner_id'];
         })
         .catch(function (error) {
             // handle error
-//            console.log(error);
+            console.log(error);
+
             if (error.response.status === 401) {
                 document.getElementById('alert_box').innerHTML
                     = "<div class='btn btn-danger rounded-pill px-5'>인증 정보가 없습니다.</div>"

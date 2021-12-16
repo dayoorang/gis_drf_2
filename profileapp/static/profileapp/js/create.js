@@ -20,7 +20,7 @@ function send_input() {
         document.getElementById('alert_box').innerHTML
     = "<div class='btn btn-primary rounded-pill px-5'>프로필 생성에 성공</div>"
     // 완성된 이후 해당 유저의 detail 페이지로 리다이렉트트
-   window.location.href='/accounts/retrieve_template/' + response.data['owner']['id'];
+   window.location.href='/accounts/retrieve_template/' + response.data['owner_id'];
   })
   .catch(function (error) {
     console.log(error);

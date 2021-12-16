@@ -2,8 +2,8 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from accountapp.views import hello_world, hello_world_template, AccountCreateTemplate, AccountCreateAPIView, \
-    AccountLoginView,  AccountRetrieveTemplateView,  \
-    AccountUpdateTemplateView,  AccountDestroyTemplateView, AccountRUDAPIView
+    AccountLoginView, AccountRetrieveTemplateView, \
+    AccountUpdateTemplateView, AccountDestroyTemplateView, AccountRUDAPIView, AccountTokenRetrieveAPIView
 from rest_framework.authtoken import views
 
 app_name = 'accountapp'
@@ -32,4 +32,6 @@ urlpatterns = [
     path('delete_template/<int:pk>', AccountDestroyTemplateView.as_view(), name='delete_template'),
 
     path('<int:pk>', AccountRUDAPIView.as_view(), name='RUD'),
+
+    path('token/', AccountTokenRetrieveAPIView.as_view(), name='token'),
 ]

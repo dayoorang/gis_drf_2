@@ -27,9 +27,12 @@
           <input id="message" type="text" class="form-control">
       </div>
 
-    <input type="submit" class="btn btn-dark rounded-pill px-5" onclick="send_input()">
+    <input type="submit" class="btn btn-dark rounded-pill px-5" onclick="update_profile('{{ view.kwargs.pk }}')">
 </div>
 
 <script src="{% static 'profileapp/js/update.js' %}">
+</script>
+<script>
+    initialize("{{ view.kwargs.pk }}");
 </script>
 {% endblock %}
