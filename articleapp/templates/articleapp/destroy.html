@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div>
+    <div id="alert_box"></div>
+    <div class="my-5">
+        <h2>Delete article</h2>
+
+        <div>
+            <input type="submit" class="btn btn-danger rounded-pill px-5" onclick=" delete_article('{{view.kwargs.pk}}')">
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'articleapp/js/destroy.js' %}"></script>
+
+{% endblock %}
+
