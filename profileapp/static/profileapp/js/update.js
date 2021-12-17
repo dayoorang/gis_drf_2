@@ -8,21 +8,17 @@ function getCookie(name) {
 function initialize(pk) {
     axios({
         method: 'get',
-        url: 'profiles/' + pk,
+        url: '/profiles/' + pk,
         headers: {
             Authorization: decodeURIComponent(getCookie('drf_token'))
         }
     })
-
-    axios.get('/profiles/' + pk )
         .then(function (response) {
             // handle success
             console.log(response);
 
             document.getElementById('nickname').value = response.data['nickname'];
             document.getElementById('message').value = response.data['message'];
-
-            // 이미지도 가져와야 함
 
         })
         .catch(function (error) {

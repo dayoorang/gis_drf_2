@@ -14,9 +14,11 @@ from profileapp.serializers import ProfileSerializer
 class ProfileCreateTemplateView(TemplateView):
     template_name = 'profileapp/create.html'
 
+
 class ProfileCreateAPIView(CreateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
 
