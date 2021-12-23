@@ -2,6 +2,8 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
+RUN echo 'asdfasdg'
+
 RUN git clone https://github.com/yangsunkang/gis_drf_2.git
 
 WORKDIR /home/gis_drf_2/
